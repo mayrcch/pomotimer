@@ -117,8 +117,6 @@ export class ConfigManager {
         const titleMap = {
             alarmSettings: 'Personalize alarme',
             notificationsSettings: 'Notificações',
-            focusLevel: 'Nível de foco',
-            autostart: 'Começo automático'
         };
         this.settingsTitle.textContent = titleMap[id] || 'Configurações';
     }

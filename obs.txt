@@ -8,8 +8,8 @@
 
 TO-DO:
 -- colocar um X ( vermelho ) invés do símbolo de lixeira na parte to-do list.
--- colocar símbolos referente aos botoes e o nome do botão do lado no site.
--- editar rodapé do site?
 -- mudar as cores do site para 'azul petroleo', 'branco' e 'preto'.
 -- botao de config superior esquerda: ativar notificações, volume do alarme, info sobre a técnica pomodoro
+-- arrumar tamanho dos botões
+-- arrumar algumas partes com tradução bugada
 
