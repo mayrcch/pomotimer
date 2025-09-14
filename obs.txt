@@ -1,0 +1,15 @@
+-- timer buga qnd o timer acaba e vc clica no mesmo botao daquele timer.
+-- trocar o botão de mudar idioma para a esquerda < e o botao de to-do list para a direita >
+-- mudar as cores dos botoes iniciar - pausar - reiniciar
+-- deixar o tamanho da lixeira do to-do list do tamanho da checkbox.
+-- quando a seta passa em cima da tarefa criada na to-do list, ele se mexe(?)
+-- adicionar um botão com musicas de lo-fi / ruídos, que tenha as funções de escolher qual música da lista de musicas e botão de volume, pausar, startar e skipar.
+
+
+TO-DO:
+-- colocar um X ( vermelho ) invés do símbolo de lixeira na parte to-do list.
+-- colocar símbolos referente aos botoes e o nome do botão do lado no site.
+-- editar rodapé do site?
+-- mudar as cores do site para 'azul petroleo', 'branco' e 'preto'.
+-- botao de config superior esquerda: ativar notificações, volume do alarme, info sobre a técnica pomodoro
+

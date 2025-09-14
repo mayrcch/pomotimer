@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✦ Pomodoro Timer ‒ Focus!</title>
+    <link rel="stylesheet" href="pomostyle.css">
+    <script src="https://kit.fontawesome.com/ae18628571.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Botão de Configurações -->
+    <div class="settings-toggle" id="settingsToggle"><i class="fa-solid fa-gear"></i> </div>
+
+    <!-- Menu de Configurações (principal e submenus) -->
+    <div class="settings-wrapper" id="settingsWrapper" aria-hidden="true">
+        <!-- Overlay -->
+        <div class="settings-overlay" id="settingsOverlay"></div>
+
+        <!-- Caixa do menu -->
+        <div class="settings-menu" id="settingsMenu" role="dialog" aria-modal="true">
+            <!-- Header com título e voltar/fechar -->
+            <div class="settings-header">
+                <button class="back-btn" id="backBtn" aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></button>
+                <h3 id="settingsTitle">Personalize</h3>
+                <button class="close-btn" id="closeSettingsBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Conteúdo: principal -->
+            <div class="settings-content" id="settingsMain">
+                <ul class="settings-list">
+                    <li class="settings-item" data-target="alarmSettings">
+                        <span><i class="fa-solid fa-bell"></i> Volume do alarme</span>
+                        <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
+                    </li>
+                    </li>
+                    <li class="settings-item" data-target="notificationsSettings">
+                        <span><i class="fa-solid fa-envelope"></i> Notificações</span>
+                        <small class="muted">recomendado</small>
+                        <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Submenu Alarme -->
+            <div class="settings-submenu" id="alarmSettings" aria-hidden="true">
+                <h4 class="submenu-title"></h4>
+                <div class="submenu-section">
+                    <label for="alarmVolume">Volume <span id="volumeValue">50%</span></label>
+                    <input type="range" id="alarmVolume" min="0" max="1" step="0.01" value="0.5">
+                    <button class="sound-mute" id="soundMuteBtn"><i class="fa-solid fa-volume-xmark"></i></button>
+                </div>
+            </div>
+
+            <!-- Submenu Notificações -->
+            <div class="settings-submenu" id="notificationsSettings" aria-hidden="true">
+                <h4 class="submenu-title"></h4>
+                <div class="submenu-section">
+                    <label class="toggle-row">
+                        <span>Notificar quando o tempo acabar</span>
+                        <input type="checkbox" id="enableNotificationsToggle">
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- botao de menu -->
+    <div class="menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-pen-to-square"></i>  <!-- icon do botao de to-do -->
+    </div>
+
+    <!-- seleção de linguagem -->
+    <div class="language-selector">
+        <div class="language-dropdown" id="languageDropdown">
+            <div class="language-current" id="languageCurrent">
+                <span id="currentLangText"><i class="fa-solid fa-earth-americas"></i></span>
+                <span class="language-arrow"><i class="fa-solid fa-caret-down"></i></span>
+            </div>
+            <div class="language-options" id="languageOptions">
+                <button class="language-option" data-lang="pt">pt-br</button>
+                <button class="language-option" data-lang="en">en-us</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- to-do sidebar -->
+    <div class="todo-sidebar" id="todoSidebar">
+        <div class="todo-header">
+            <h2 class="todo-title" id="todoTitle"><i class="fa-solid fa-clipboard-list"></i> To-Do List</h2>
+            <button class="close-btn" id="closeTodoBtn"><i class="fa-solid fa-xmark"></i></button> <!-- botao icon X do to-do -->
+        </div>
+        <div class="todo-content">
+            <div class="todo-input-section">
+                <input type="text" class="todo-input" id="todoInput" placeholder="Digite sua tarefa...">
+                <button class="add-todo-btn" id="addTodoBtn">Adicionar Tarefa</button>
+            </div>
+            <ul class="todo-list" id="todoList">
+                <!-- Lista de tarefas será inserida aqui -->
+            </ul>
+            <div class="empty-state" id="emptyState">
+                Nenhuma tarefa ainda. Adicione uma acima!
+            </div>
+        </div>
+    </div>
+
+    <!-- principal -->
+    <div class="container">
+        <h1 id="title">Timer Pomodoro</h1>
+    <div class="session-buttons">
+        <button class="session-btn active" id="focusBtn">Foco</button>
+        <button class="session-btn" id="breakBtn">Pausa</button>
+        <button class="session-btn" id="longBreakBtn">Pausa Longa</button>
+    </div>
+        <!-- display do timer -->
+        <div class="timer-container">
+            <svg class="progress-ring" width="300" height="300">
+                <circle class="progress-ring__circle progress-ring__background"
+                        cx="150" cy="150" r="140"/>
+                <circle class="progress-ring__circle progress-ring__progress"
+                        cx="150" cy="150" r="140"/>
+            </svg>
+            <div class="timer-display" id="timerDisplay">25:00</div>
+        </div>
+
+        <!-- botoes principais -->
+        <div class="controls">
+            <button class="btn btn-start" id="startBtn">Iniciar</button>
+            <button class="btn btn-stop" id="stopBtn">Pausar</button>
+            <button class="btn btn-reset" id="resetBtn">Reiniciar</button>
+        </div>
+
+        <!-- info da sessão escolhida (pausa curta, pausa longa, etc.) -->
+        <div class="session-info">
+            <p id="sessionInfo">Sessão de Foco - 25 minutos</p>
+        </div>
+    </div>
+
+    <script type="module" src="/back/pomo.js"></script>
+</body>
+</html>
