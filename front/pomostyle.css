@@ -36,7 +36,7 @@ h1 {
 .session-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     margin: 20px 0 30px 0;
     flex-wrap: wrap;
 }
@@ -45,9 +45,9 @@ h1 {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-size: 14px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -56,6 +56,8 @@ h1 {
     backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
 }
 
 .session-btn::before {
@@ -232,9 +234,11 @@ h1 {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
+    border-radius: 30px;
     color: white;
     padding: 12px 18px;
+    width: 100px;
+    height: 44px;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 500;
@@ -242,7 +246,6 @@ h1 {
     display: flex;
     align-items: center;
     gap: 8px;
-    min-width: 100px;
     justify-content: space-between;
 }
 
@@ -317,13 +320,18 @@ h1 {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
+    border-radius: 30px;
     color: white;
     padding: 12px 18px;
+    width: 100px;
+    height: 44px;
     cursor: pointer;
     font-size: 1.2rem;
     transition: all 0.3s ease;
     z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .menu-toggle:hover {
@@ -600,12 +608,17 @@ h1 {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 20px;
-    padding: 8px 12px;
+    border-radius: 30px;
+    padding: 12px 18px;
+    width: 100px;
+    height: 44px;
     font-weight: 600;
     cursor: pointer;
     z-index: 1200;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .settings-wrapper {
