@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* base style */
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@ body {
   color: white;
 }
 
-/* Main Container */
+/* main container */
 .container {
   text-align: center;
   background: rgba(255, 255, 255, 0.1);
@@ -32,7 +32,7 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Session Type Buttons */
+/* session buttons */
 .session-buttons {
   display: flex;
   justify-content: center;
@@ -103,7 +103,7 @@ h1 {
   transform: translateY(0);
 }
 
-/* Responsividade para os botões de sessão */
+/* responsividade para os botões de sessão */
 @media (max-width: 768px) {
   .session-buttons {
     gap: 10px;
@@ -171,7 +171,7 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Controls */
+/* controls pomo */
 .controls {
   display: flex;
   gap: 20px;
@@ -222,7 +222,7 @@ h1 {
   opacity: 0.8;
 }
 
-/* Language Selector */
+/* language selector */
 .language-selector {
   position: fixed;
   top: 20px;
@@ -245,7 +245,7 @@ h1 {
   width: 80px;
   height: 44px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1.1rem; /* 0.9 */
   font-weight: 500;
   transition: all 0.3s ease;
   display: flex;
@@ -317,7 +317,7 @@ h1 {
   border-radius: 0 0 15px 15px;
 }
 
-/* Menu Toggle */
+/* menu toggle */
 .menu-toggle {
   position: fixed;
   top: 20px;
@@ -466,7 +466,7 @@ h1 {
 .todo-text {
   flex: 1;
   margin-right: 10px;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .todo-actions {
@@ -510,7 +510,7 @@ h1 {
   height: 20px;
   width: 20px;
   background-color: white;
-  border: 2px solid #4caf50;
+  border: 3px solid #4caf50;
   border-radius: 3px;
   transition: all 0.3s ease;
 }
@@ -524,21 +524,35 @@ h1 {
   border-color: #4caf50;
 }
 
-.checkbox-custom:after {
-  content: "";
+.checkbox-custom {
   position: absolute;
-  display: none;
-  left: 4px;
-  top: 1px;
-  width: 6px;
-  height: 9px;
-  border: solid rgb(255, 255, 255);
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  top: 0px;
+  left: 0px;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 3 px solid #4caf50;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  display: flex; /* centraliza o icon */
+  align-items: center;
+  justify-content: center;
 }
 
-.todo-checkbox input:checked ~ .checkbox-custom:after {
-  display: block;
+.checkbox-custom i {
+  font-size: 14px;
+  color: white;
+  display: none; /* escondido ate marcar */
+}
+
+
+.todo-checkbox input:checked ~ .checkbox-custom {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.todo-checkbox input:checked ~ .checkbox-custom i {
+  display: block; /* mostra o icon qnd marca */
 }
 
 .delete-btn {
@@ -615,7 +629,7 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   padding: 12px 18px;
-  width: 50fpx;
+  width: 80px;
   height: 44px;
   font-weight: 600;
   cursor: pointer;

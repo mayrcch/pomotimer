@@ -69,9 +69,9 @@ export class TodoManager {
                 <div class="todo-actions">
                     <label class="todo-checkbox">
                         <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="pomodoroTimer.todoManager.toggleTodo(${todo.id})">
-                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-custom"><i class="fa-solid fa-check"></i></span>
                     </label>
-                    <button class="todo-btn delete-btn" onclick="pomodoroTimer.todoManager.deleteTodo(${todo.id})">🗑</button>
+                    <button class="todo-btn delete-btn" onclick="pomodoroTimer.todoManager.deleteTodo(${todo.id})"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `;
             this.todoList.appendChild(li);

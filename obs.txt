@@ -1,5 +1,4 @@
 -- timer buga qnd o timer acaba e vc clica no mesmo botao daquele timer.
--- trocar o botão de mudar idioma para a esquerda < e o botao de to-do list para a direita >
 -- mudar as cores dos botoes iniciar - pausar - reiniciar
 -- deixar o tamanho da lixeira do to-do list do tamanho da checkbox.
 -- quando a seta passa em cima da tarefa criada na to-do list, ele se mexe(?)
@@ -12,4 +11,5 @@ TO-DO:
 -- botao de config superior esquerda: ativar notificações, volume do alarme, info sobre a técnica pomodoro
 -- arrumar tamanho dos botões
 -- arrumar algumas partes com tradução bugada
+-- colocar som de alarme / verificar se o volume está funcionando normalmente
 
