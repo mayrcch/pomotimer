@@ -1,4 +1,4 @@
-/* base style */
+/* fundo geral da pag., fonte e cor base do texto */
 * {
   margin: 0;
   padding: 0;
@@ -7,32 +7,33 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #0d1a2f;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #f0f0f0;
 }
 
-/* main container */
+/* container main: parte central onde ta o timer e os botões */
 .container {
   text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: #182b4a; 
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* "Pomodoro Timer" */
 h1 {
   font-size: 2.5rem;
   margin-bottom: 30px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: #fff; /* Título em branco */
+  letter-spacing: 0.3px;
 }
 
-/* session buttons */
+/* botões 'foco', 'pausa', 'pausa longa' */
 .session-buttons {
   display: flex;
   justify-content: center;
@@ -42,24 +43,24 @@ h1 {
 }
 
 .session-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 12px 28px;
   border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.28s cubic-bezier(.2,.9,.2,1);
   text-transform: uppercase;
   letter-spacing: 1px;
-  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  min-width: 120px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  min-width: 110px;
 }
 
+/* brilho ao passar o mouse */
 .session-btn::before {
   content: "";
   position: absolute;
@@ -70,10 +71,10 @@ h1 {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.06),
     transparent
   );
-  transition: left 0.5s;
+  transition: left 0.45s ease;
 }
 
 .session-btn:hover::before {
@@ -81,39 +82,38 @@ h1 {
 }
 
 .session-btn:hover {
-  border-color: rgba(255, 255, 255, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
+/* botao qnd ativo */
+/* aparencia do botão que indica a sessão atual */
 .session-btn.active {
-  background: linear-gradient(135deg, #ff6b6b, #ee4b4b);
-  border-color: #ff6b6b;
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  background: #fff;
+  color: #182b4a;
+  border-color: #fff;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.06);
   transform: translateY(-1px);
 }
 
 .session-btn.active:hover {
-  background: linear-gradient(135deg, #ee4b4b, #dd3333);
+  background: #f2f4f7;
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+  box-shadow: 0 12px 36px rgba(255, 255, 255, 0.06);
 }
 
-.session-btn:active {
-  transform: translateY(0);
-}
-
-/* responsividade para os botões de sessão */
+/* responsividade dos botoes de sessao */
 @media (max-width: 768px) {
   .session-buttons {
-    gap: 10px;
-    margin: 15px 0 25px 0;
+    gap: 12px;
+    margin: 14px 0 24px 0;
   }
 
   .session-btn {
-    padding: 10px 20px;
-    font-size: 13px;
-    border-radius: 20px;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    border-radius: 22px;
   }
 }
 
@@ -130,12 +130,13 @@ h1 {
   }
 }
 
-/* Timer Styles */
+/* timer/circulo: tamanho do círculo, cor do traço e visual do numero central */
 .timer-container {
   position: relative;
   margin: 40px auto;
   width: 300px;
   height: 300px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .progress-ring {
@@ -143,86 +144,132 @@ h1 {
   top: 0;
   left: 0;
   transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
 }
 
 .progress-ring__circle {
   fill: none;
   stroke-width: 8;
-  transition: stroke-dashoffset 0.1s ease;
+  transition: stroke-dashoffset 0.12s linear, stroke 0.2s ease;
 }
 
 .progress-ring__background {
-  stroke: rgba(255, 255, 255, 0.2);
+  stroke: rgba(255, 255, 255, 0.12);
 }
 
 .progress-ring__progress {
-  stroke: #ff6b6b;
+  stroke: #fff; /* cor do progresso do timer */
   stroke-linecap: round;
-  filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.12));
 }
 
+/* mostra o timer dentro do circulo */
 .timer-display {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 3rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+  user-select: none;
 }
 
-/* controls pomo */
+/* responsividade para telas pequenas */
+@media (max-width: 480px) {
+  .timer-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  .timer-display {
+    font-size: 2.4rem;
+  }
+}
+
+/* aparencia dos botoes: iniciar/pausar/reiniciar */
 .controls {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   justify-content: center;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 15px 30px;
+  padding: 12px 28px;
   border: none;
   border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.02rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  min-width: 110px;
 }
 
+/* hover geral desses botoes */
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
 }
 
 .btn:active {
   transform: translateY(0);
 }
 
+/* botao iniciar */
 .btn-start {
-  background: linear-gradient(45deg, #4caf50, #45a049);
-  color: white;
+  background: linear-gradient(90deg, #16C7D7 0%, #0EA8D6 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 20px rgba(14, 168, 214, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.btn-start:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(14, 168, 214, 0.25);
 }
 
+/* botao pausar */
 .btn-stop {
-  background: linear-gradient(45deg, #f44336, #da190b);
-  color: white;
+  background: #FFFFFF;
+  color: #182B4A;              /* texto azul marinho escuro */
+  border: 2px solid #E6EEF8;   /* borda bem suave */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn-stop:hover {
+  background: #F7F9FB; 
 }
 
+/* botao reiniciar */
 .btn-reset {
-  background: linear-gradient(45deg, #2196f3, #0b7dda);
-  color: white;
+  background: linear-gradient(90deg, #081B2D 0%, #0E2940 100%);
+  color: #EAF3FF;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 8px 24px rgba(3,12,20,0.55);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.btn-reset:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #0B2636 0%, #163848 100%);
 }
 
+
+/* descrição da sessão atual abaixo dos botoes (sessão de foco - 25 minutos) */
 .session-info {
   margin-top: 20px;
-  font-size: 1.2rem;
-  opacity: 0.8;
+  font-size: 1.05rem;
+  opacity: 0.9;
+  color: #e6eef8;
 }
 
-/* language selector */
+/* seletor de idioma */
 .language-selector {
   position: fixed;
   top: 20px;
@@ -236,18 +283,17 @@ h1 {
 }
 
 .language-current {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #182b4a; 
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 30px;
-  color: white;
-  padding: 12px 18px;
+  color: #fff;
+  padding: 10px 14px;
   width: 80px;
   height: 44px;
   cursor: pointer;
-  font-size: 1.1rem; /* 0.9 */
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-size: 0.98rem;
+  font-weight: 600;
+  transition: all 0.22s ease;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -255,13 +301,13 @@ h1 {
 }
 
 .language-current:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
+  background: #203c61;
+  transform: translateY(-2px);
 }
 
 .language-arrow {
   font-size: 0.8rem;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .language-dropdown.open .language-arrow {
@@ -270,19 +316,19 @@ h1 {
 
 .language-options {
   position: absolute;
-  top: 100%;
+  top: 110%;
   right: 0;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
+  background: #182b4a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
   margin-top: 8px;
   min-width: 100%;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
+  transform: translateY(-8px);
+  transition: all 0.18s ease;
   overflow: hidden;
+  z-index: 1100;
 }
 
 .language-dropdown.open .language-options {
@@ -294,45 +340,35 @@ h1 {
 .language-option {
   background: none;
   border: none;
-  color: white;
-  padding: 12px 18px;
+  color: #fff;
+  padding: 10px 14px;
   cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 600;
   display: block;
   width: 100%;
   text-align: left;
 }
 
 .language-option:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.04);
 }
 
-.language-option:first-child {
-  border-radius: 15px 15px 0 0;
-}
-
-.language-option:last-child {
-  border-radius: 0 0 15px 15px;
-}
-
-/* menu toggle */
+/* botao que abre a sidebar to-do list */
 .menu-toggle {
   position: fixed;
   top: 20px;
   right: 140px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #182b4a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 30px;
-  color: white;
-  padding: 12px 18px;
+  color: #fff;
+  padding: 10px 14px;
   width: 80px;
   height: 44px;
   cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
+  font-size: 1.05rem;
+  transition: all 0.2s ease;
   z-index: 1001;
   display: flex;
   align-items: center;
@@ -340,24 +376,24 @@ h1 {
 }
 
 .menu-toggle:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
+  background: #203c61;
+  transform: translateY(-2px);
 }
 
-/* Todo Sidebar */
+/* painel lateral com a lista de tarefas */
 .todo-sidebar {
   position: fixed;
   top: 0;
-  right: -400px;
+  right: -420px;
   width: 400px;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  transition: right 0.3s ease;
+  background: #182b4a; 
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  transition: right 0.28s cubic-bezier(.2,.9,.2,1);
   z-index: 1000;
   overflow-y: auto;
-  color: #333;
+  color: #eaf3ff;
+  -webkit-overflow-scrolling: touch;
 }
 
 .todo-sidebar.open {
@@ -365,132 +401,135 @@ h1 {
 }
 
 .todo-header {
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 18px 18px;
+  background: rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .todo-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #333;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f0f6ff;
 }
 
 .close-btn {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  color: #666;
-  padding: 5px;
+  color: #f0f6ff;
+  padding: 6px;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: all 0.18s ease;
 }
 
 .close-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
-  color: #333;
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
 }
 
 .todo-content {
-  padding: 20px;
+  padding: 18px;
 }
 
 .todo-input-section {
-  margin-bottom: 30px;
+  margin-bottom: 22px;
 }
 
+/* campo para digitar as tarefas */
 .todo-input {
   width: 100%;
   padding: 12px;
-  border: 2px solid rgba(102, 126, 234, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.06);
   border-radius: 10px;
   font-size: 1rem;
   margin-bottom: 10px;
   outline: none;
-  transition: border-color 0.3s ease;
+  background: #0d1a2f;
+  color: #eaf3ff;
+}
+
+.todo-input::placeholder {
+  color: rgba(234,243,255,0.6);
 }
 
 .todo-input:focus {
-  border-color: rgba(102, 126, 234, 0.8);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
+/* botao de add a tarefa */
 .add-todo-btn {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(180deg, #667eea 0%, #5866d1 100%); /* mantém um leve destaque */
   color: white;
   border: none;
   border-radius: 10px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .add-todo-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(88,102,209,0.14);
 }
 
+/* lista de tarefas */
 .todo-list {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
+/* cada item da lista */
 .todo-item {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: 10px;
-  padding: 15px;
+  padding: 14px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: all 0.18s ease;
 }
 
 .todo-item:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateX(-5px);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateX(-4px);
 }
 
 .todo-text.completed {
   text-decoration: line-through;
   opacity: 0.6;
-  color: #302f2f;
+  color: rgba(234,243,255,0.6);
 }
 
 .todo-text {
   flex: 1;
   margin-right: 10px;
   font-size: 1.1rem;
+  color: #eaf3ff;
 }
 
+/* ações de cada item (checkbox e deletar) */
 .todo-actions {
   display: flex;
-  gap: 5px;
+  gap: 8px;
   align-items: center;
 }
 
-.todo-btn {
-  background: none;
-  border: none;
-  padding: 5px 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-/* Custom Checkbox */
+/* efeito da caixinha da tarefa (desmarcada/marcada) */
 .todo-checkbox {
   position: relative;
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
   cursor: pointer;
   display: inline-block;
 }
@@ -503,141 +542,90 @@ h1 {
   width: 0;
 }
 
+/* caixinha em si */
 .checkbox-custom {
   position: absolute;
   top: 0;
   left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: white;
-  border: 3px solid #4caf50;
-  border-radius: 3px;
-  transition: all 0.3s ease;
+  height: 22px;
+  width: 22px;
+  background-color: #0d1a2f;
+  border: 3px solid #1e88e5; /* cor da borda quando não marcada */
+  border-radius: 4px;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.25);
 }
 
 .todo-checkbox:hover .checkbox-custom {
-  background-color: rgba(76, 175, 80, 0.1);
+  background-color: rgba(30, 136, 229, 0.04);
 }
 
+/* quando marcado: fica td azul */
 .todo-checkbox input:checked ~ .checkbox-custom {
-  background-color: #4caf50;
-  border-color: #4caf50;
+  background-color: #1e88e5;
+  border-color: #1e88e5;
 }
 
-.checkbox-custom {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 20px;
-  width: 20px;
-  background-color: white;
-  border: 3 px solid #4caf50;
-  border-radius: 3px;
-  transition: all 0.3s ease;
-  display: flex; /* centraliza o icon */
-  align-items: center;
-  justify-content: center;
-}
-
+/* e o icon de 'concluído' aparece */
 .checkbox-custom i {
-  font-size: 14px;
+  font-size: 13px;
   color: white;
-  display: none; /* escondido ate marcar */
-}
-
-
-.todo-checkbox input:checked ~ .checkbox-custom {
-  background-color: #4caf50;
-  border-color: #4caf50;
+  display: none;
 }
 
 .todo-checkbox input:checked ~ .checkbox-custom i {
-  display: block; /* mostra o icon qnd marca */
+  display: block;
 }
 
+/* botao de remover tarefa (icon) */
 .delete-btn {
-  color: #f44336;
-  font-size: 18px; /* Aumenta o tamanho do emoji */
-  width: 32px; /* Define largura similar ao checkbox */
-  height: 32px; /* Define altura similar ao checkbox */
+  color: #ff6b6b;
+  font-size: 18px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 6px;
   padding: 0;
   line-height: 1;
+  transition: background 0.12s ease;
 }
 
 .delete-btn:hover {
-  background: rgba(244, 67, 54, 0.192);
+  background: rgba(255, 107, 107, 0.08);
 }
 
+/* mensagem exibida quando n tem tarefas */
 .empty-state {
   text-align: center;
-  color: #666;
+  color: rgba(234,243,255,0.7);
   font-style: italic;
-  margin-top: 30px;
+  margin-top: 26px;
 }
 
-/* Responsive Design */
-@media (max-width: 480px) {
-  .todo-sidebar {
-    width: 100vw;
-    right: -100vw;
-  }
-
-  .menu-toggle {
-    right: 20px;
-    top: 80px;
-  }
-
-  .container {
-    padding: 20px;
-    margin: 20px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .timer-container {
-    width: 250px;
-    height: 250px;
-  }
-
-  .timer-display {
-    font-size: 2.5rem;
-  }
-
-  .controls {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .btn {
-    padding: 12px 25px;
-  }
-}
-
-/* ===== Settings menu styles (hierarchical submenus) ===== */
+/* botão de configurações e menu de config */
 .settings-toggle {
   position: fixed;
   top: 18px;
   left: 18px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #182b4a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 30px;
-  padding: 12px 18px;
+  padding: 10px 14px;
   width: 80px;
   height: 44px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   z-index: 1200;
-  color: white;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.18s ease;
 }
 
 .settings-wrapper {
@@ -656,7 +644,7 @@ h1 {
 .settings-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .settings-menu {
@@ -667,11 +655,12 @@ h1 {
   background: #ffffff;
   color: #222;
   border-radius: 12px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   z-index: 1200;
 }
 
+/* header do menu de config */
 .settings-header {
   display: flex;
   align-items: center;
@@ -747,6 +736,7 @@ h1 {
   align-items: center;
   flex-wrap: wrap;
 }
+
 .sound-btn {
   padding: 6px 10px;
   border-radius: 8px;
@@ -754,11 +744,13 @@ h1 {
   background: #fafafa;
   cursor: pointer;
 }
+
 .sound-btn.active {
   background: #1e88e5;
   color: white;
   border-color: #1e88e5;
 }
+
 .sound-mute {
   padding: 6px 10px;
   border-radius: 8px;
@@ -767,6 +759,7 @@ h1 {
   cursor: pointer;
 }
 
+/* nas setinhas de cada parte da config */
 .toggle-row {
   display: flex;
   align-items: center;
@@ -774,6 +767,7 @@ h1 {
   gap: 8px;
 }
 
+/* controle do volume do alarme */
 #alarmVolume {
   width: 100%;
 }
@@ -782,10 +776,53 @@ h1 {
   margin-left: 8px;
 }
 
-/* small screens */
+/* pequenas mudanças para telas bem pequenas */
 @media (max-width: 480px) {
+  .todo-sidebar {
+    width: 100vw;
+    right: -100vw;
+  }
+
+  .menu-toggle {
+    right: 18px;
+    top: 72px;
+  }
+
+  .container {
+    padding: 20px;
+    margin: 16px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  .timer-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  .timer-display {
+    font-size: 2.2rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    min-width: 140px;
+  }
+
   .settings-menu {
     width: 92%;
     margin: 20px auto;
   }
+
+  .language-current {
+    width: 70px;
+  }
 }
+
