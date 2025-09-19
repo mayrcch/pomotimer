@@ -14,21 +14,40 @@ export class TodoManager {
         this.bindEvents();
     }
 
+    // bindEvents() {
+    //     this.menuToggle.addEventListener('click', () => {
+    //         this.todoSidebar.classList.add('open');
+    //     });
+
+    //     this.closeTodoBtn.addEventListener('click', () => {
+    //         this.todoSidebar.classList.remove('open');
+    //     });
+
+    //     this.addTodoBtn.addEventListener('click', () => this.addTodo());
+
+    //     this.todoInput.addEventListener('keypress', (e) => {
+    //         if (e.key === 'Enter') this.addTodo();
+    //     });
+    // }
+
+    // p/ o botao da to-do sumir ao clicar
     bindEvents() {
-        this.menuToggle.addEventListener('click', () => {
-            this.todoSidebar.classList.add('open');
-        });
+    this.menuToggle.addEventListener('click', () => {
+        this.todoSidebar.classList.add('open');
+        this.menuToggle.style.display = "none"; // esconde botão
+    });
 
-        this.closeTodoBtn.addEventListener('click', () => {
-            this.todoSidebar.classList.remove('open');
-        });
+    this.closeTodoBtn.addEventListener('click', () => {
+        this.todoSidebar.classList.remove('open');
+        this.menuToggle.style.display = "flex"; // mostra botão de novo
+    });
 
-        this.addTodoBtn.addEventListener('click', () => this.addTodo());
+    this.addTodoBtn.addEventListener('click', () => this.addTodo());
 
-        this.todoInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this.addTodo();
-        });
-    }
+    this.todoInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') this.addTodo();
+    });
+}
 
     addTodo() {
         const text = this.todoInput.value.trim();

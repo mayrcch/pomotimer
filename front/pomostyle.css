@@ -89,18 +89,29 @@ h1 {
 
 /* botao qnd ativo */
 /* aparencia do botão que indica a sessão atual */
-.session-btn.active {
+/* .session-btn.active {
   background: #fff;
   color: #182b4a;
   border-color: #fff;
   box-shadow: 0 6px 20px rgba(255, 255, 255, 0.06);
   transform: translateY(-1px);
+} */
+
+.session-btn.active {
+  background: #fff;
+  color: #182b4a;
+  border-color: rgba(24, 43, 74, 1);
+  transform: translateY(-1px);
+  z-index: 2;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 7px rgba(24, 43, 74, 1);
 }
 
 .session-btn.active:hover {
   background: #f2f4f7;
   transform: translateY(-3px);
-  box-shadow: 0 12px 36px rgba(255, 255, 255, 0.06);
+  /* box-shadow: 0 12px 36px rgba(255, 255, 255, 0.06); */
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 7px rgba(24, 43, 74, 1),
+  0 12px 36px rgba(0, 0, 0, 0.45);
 }
 
 /* responsividade dos botoes de sessao */
@@ -284,7 +295,8 @@ h1 {
 
 .language-current {
   background: #182b4a; 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* border: 1px solid rgba(255, 255, 255, 0.08); */
+  border: 2px solid rgba(255, 255, 255, 0.12);
   border-radius: 30px;
   color: #fff;
   padding: 10px 14px;
@@ -360,7 +372,8 @@ h1 {
   top: 20px;
   right: 140px;
   background: #182b4a;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  /* border: 1px solid rgba(255, 255, 255, 0.06); */
+  border: 2px solid rgba(255, 255, 255, 0.12);
   border-radius: 30px;
   color: #fff;
   padding: 10px 14px;
@@ -420,15 +433,15 @@ h1 {
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
-  color: #f0f6ff;
+  color: #333;
   padding: 6px;
   border-radius: 50%;
   transition: all 0.18s ease;
 }
 
 .close-btn:hover {
-  background: rgba(255, 255, 255, 0.03);
-  color: #fff;
+  background: rgba(0,0,0,0.05);
+  color: #000;
 }
 
 .todo-content {
@@ -613,7 +626,8 @@ h1 {
   top: 18px;
   left: 18px;
   background: #182b4a;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  /* border: 1px solid rgba(255, 255, 255, 0.06); */
+  border: 2px solid rgba(255, 255, 255, 0.12);
   border-radius: 30px;
   padding: 10px 14px;
   width: 80px;
@@ -626,6 +640,11 @@ h1 {
   align-items: center;
   justify-content: center;
   transition: all 0.18s ease;
+}
+
+.settings-toggle:hover {
+  background: #203c61;
+  transform: translateY(-2px);
 }
 
 .settings-wrapper {
