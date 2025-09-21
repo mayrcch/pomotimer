@@ -38,6 +38,10 @@
                         <small class="muted">recomendado</small>
                         <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
+                    <li class="settings-item" data-target="aboutPomodoro">
+                        <span><i class="fa-solid fa-clock"></i> Sobre a técnica Pomodoro</span>
+                        <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
+                    </li>
                 </ul>
             </div>
 
@@ -59,6 +63,16 @@
                         <span>Notificar quando o tempo acabar</span>
                         <input type="checkbox" id="enableNotificationsToggle">
                     </label>
+                </div>
+            </div>
+            <div class="settings-submenu" id="aboutPomodoro" aria-hidden="true">
+                <h4 class="submenu-title">O que é a Técnica Pomodoro?</h4>
+                <div class="submenu-section">
+                    <p>
+                        A Técnica Pomodoro é um método de gestão de tempo que divide o trabalho em blocos de foco (25 minutos), seguidos de pequenas pausas.
+                        Após quatro ciclos, faz-se uma pausa mais longa. Isso ajuda a manter a
+                        produtividade e reduzir a fadiga mental.
+                    </p>
                 </div>
             </div>
 
@@ -87,7 +101,7 @@
     <!-- to-do sidebar -->
     <div class="todo-sidebar" id="todoSidebar">
         <div class="todo-header">
-            <h2 class="todo-title" id="todoTitle"><i class="fa-solid fa-clipboard-list"></i> To-Do List</h2> <!-- icon clipboard -->
+            <h2 class="todo-title" id="todoTitle"><i class="fa-solid fa-clipboard-list"></i>To-Do List</h2> <!-- icon clipboard -->
             <button class="close-btn" id="closeTodoBtn"><i class="fa-solid fa-xmark"></i></button> <!-- botao icon X do to-do -->
         </div>
         <div class="todo-content">

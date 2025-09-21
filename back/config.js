@@ -113,10 +113,11 @@ export class ConfigManager {
         submenu.classList.add('open');
         this.currentSubmenu = id;
         this.backBtn.classList.add('visible');
-        // set title based on submenu
+        // titulos dos conteudos do submenu de config
         const titleMap = {
             alarmSettings: 'Personalize alarme',
             notificationsSettings: 'Notificações',
+            aboutPomodoro: 'Sobre a técnica Pomodoro'
         };
         this.settingsTitle.textContent = titleMap[id] || 'Configurações';
     }
