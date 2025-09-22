@@ -170,11 +170,11 @@ export default class PomodoroTimer {
     // notification via notifications module
     sendNotification(t.notificationTitle, t.notificationBody);
 
-    // play alarm if configured
+    // toca o alarme
     try {
       if (this.configManager) {
-        // play selected sound (best-effort)
-        this.configManager.playSelectedSound();
+        // toca o alarme selecionado
+        this.configManager.playAlarm();
       }
     } catch (e) {
       console.warn("ConfigManager not available to play sound", e);

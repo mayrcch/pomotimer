@@ -69,9 +69,17 @@
                 <h4 class="submenu-title">O que é a Técnica Pomodoro?</h4>
                 <div class="submenu-section">
                     <p>
-                        A Técnica Pomodoro é um método de gestão de tempo que divide o trabalho em blocos de foco (25 minutos), seguidos de pequenas pausas.
-                        Após quatro ciclos, faz-se uma pausa mais longa. Isso ajuda a manter a
-                        produtividade e reduzir a fadiga mental.
+                        A Técnica Pomodoro é um método de gestão de tempo que divide o trabalho/estudo em blocos de foco (25 minutos), seguidos de pequenas pausas.
+                        Após quatro ciclos, faz-se uma pausa mais longa de 15 a 30 minutos. Isso ajuda a manter a
+                        produtividade e reduzir a fadiga mental.<br><br>
+
+                        <strong>Como funciona:</strong><br>
+                            - Faça uma lista de tarefas.<br>
+                            - Defina o cronômetro de 25 minutos e concentre-se em uma tarefa até que o alarme dispare. <strong>( DICA:</strong> mantenha o celular / redes sociais distantes!<strong> )</strong><br>
+                            - Após a conclusão da sessão, marque um pomodoro e registre o que você completou.<br>
+                            - Faça uma pausa de 5 minutos para refrescar sua concentração.<br>
+                            - Após 4 pomodoros, faça uma longa pausa de 15-30 minutos.
+
                     </p>
                 </div>
             </div>
@@ -123,8 +131,8 @@
         <h1 id="title">Timer Pomodoro</h1>
     <div class="session-buttons">
         <button class="session-btn active" id="focusBtn">Foco</button>
-        <button class="session-btn" id="breakBtn">Pausa</button>
-        <button class="session-btn" id="longBreakBtn">Pausa Longa</button>
+        <button class="session-btn" id="breakBtn">Pausa curta</button>
+        <button class="session-btn" id="longBreakBtn">Pausa longa</button>
     </div>
         <!-- display do timer -->
         <div class="timer-container">
@@ -136,19 +144,16 @@
             </svg>
             <div class="timer-display" id="timerDisplay">25:00</div>
         </div>
-
-        <!-- botoes principais -->
-        <div class="controls">
-            <button class="btn btn-start" id="startBtn">Iniciar</button>
-            <button class="btn btn-stop" id="stopBtn">Pausar</button>
-            <button class="btn btn-reset" id="resetBtn">Reiniciar</button>
-        </div>
-
         <!-- info da sessão escolhida (pausa curta, pausa longa, etc.) -->
         <div class="session-info">
             <p id="sessionInfo">Sessão de Foco - 25 minutos</p>
         </div>
-    </div>
+        <!-- botoes principais -->
+        <div class="controls">
+            <button class="btn btn-start" id="startBtn">Iniciar</button>
+            <button class="btn btn-stop" id="stopBtn">Parar</button>
+            <button class="btn btn-reset" id="resetBtn">Reiniciar</button>
+        </div>
 
     <script type="module" src="/back/pomo.js"></script>
 </body>

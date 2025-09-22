@@ -386,6 +386,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: -20px; /* mais próximo ao botao de idioma */
 }
 
 .menu-toggle:hover {
@@ -649,22 +650,19 @@ h1 {
 
 .settings-wrapper {
   position: fixed;
-  inset: 0;
+  top: 35px;
+  left: -15px;
   display: none;
-  z-index: 1199;
+  z-index: 1000;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
 .settings-wrapper.open {
-  display: flex;
+  display: block;
 }
 
-.settings-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-}
+
 
 .settings-menu {
   position: relative;

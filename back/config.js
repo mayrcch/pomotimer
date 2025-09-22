@@ -16,7 +16,6 @@ export class ConfigManager {
 
         // alarm controls
         this.alarmSettings = document.getElementById('alarmSettings');
-        this.soundButtons = Array.from(this.alarmSettings.querySelectorAll('.sound-btn'));
         this.soundMuteBtn = document.getElementById('soundMuteBtn');
         this.alarmVolume = document.getElementById('alarmVolume');
         this.volumeValue = document.getElementById('volumeValue');
@@ -28,15 +27,9 @@ export class ConfigManager {
         // autostart and others
         this.autostartToggle = document.getElementById('autostartToggle');
 
-        // internal state
-        this.currentSubmenu = null;
-        this.sounds = {
-            sound1: new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg'),
-            sound2: new Audio('https://actions.google.com/sounds/v1/alarms/medium_bell_ringing.ogg'),
-            long: new Audio('https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg')
-        };
-        this.selectedSound = 'sound1';
-        this.sounds[this.selectedSound].volume = 0.5;
+        // som do alarme
+        this.alarmSound = new Audio('./sounds/alarm.wav'); 
+        this.alarmSound.volume = 0.5; // volume inicial
         this.alarmVolume.value = 0.5;
         this.updateVolumeLabel();
 
@@ -58,21 +51,15 @@ export class ConfigManager {
         // back button
         this.backBtn.addEventListener('click', () => this.backToMain());
 
-        // alarm sound selection
-        this.soundButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                this.selectSound(btn.dataset.sound);
-            });
-        });
-
-        this.soundMuteBtn.addEventListener('click', () => {
-            this.toggleMute();
-        });
-
         // volume control
         this.alarmVolume.addEventListener('input', () => {
+            this.alarmSound.volume = parseFloat(this.alarmVolume.value);
             this.updateVolumeLabel();
-            this.setVolume(parseFloat(this.alarmVolume.value));
+        });
+
+        // botão mute
+        this.soundMuteBtn.addEventListener('click', () => {
+            this.toggleMute();
         });
 
         // notifications toggle
@@ -130,35 +117,19 @@ export class ConfigManager {
         this.submenus.forEach(s => s.classList.remove('open'));
     }
 
-    selectSound(soundKey) {
-        if (!this.sounds[soundKey]) return;
-        // deactivate buttons
-        this.soundButtons.forEach(b => b.classList.remove('active'));
-        const btn = this.soundButtons.find(b => b.dataset.sound === soundKey);
-        if (btn) btn.classList.add('active');
-
-        this.selectedSound = soundKey;
-        // ensure volume applied
-        this.setVolume(parseFloat(this.alarmVolume.value));
-    }
-
+    // mute adaptado para único som =====
     toggleMute() {
         const vol = parseFloat(this.alarmVolume.value);
         if (vol > 0) {
             // store previous and mute
             this._previousVolume = vol;
             this.alarmVolume.value = 0;
-            this.setVolume(0);
+            this.alarmSound.volume = 0;
         } else {
             // restore previous
             this.alarmVolume.value = (this._previousVolume || 0.5);
-            this.setVolume(parseFloat(this.alarmVolume.value));
+            this.alarmSound.volume = parseFloat(this.alarmVolume.value);
         }
-        this.updateVolumeLabel();
-    }
-
-    setVolume(value) {
-        Object.values(this.sounds).forEach(s => { s.volume = value; });
         this.updateVolumeLabel();
     }
 
@@ -167,14 +138,12 @@ export class ConfigManager {
         this.volumeValue.textContent = v + '%';
     }
 
+    // método único para tocar o alarme =====
     playSelectedSound() {
-        const s = this.sounds[this.selectedSound];
-        if (!s) return;
         try {
-            s.currentTime = 0;
-            s.play();
+            this.alarmSound.currentTime = 0;
+            this.alarmSound.play();
         } catch (e) {
-            // autoplay/permission issues ignored; app can still show notifications
             console.warn('Erro ao tocar som', e);
         }
     }

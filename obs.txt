@@ -7,12 +7,12 @@ ideia: https://prnt.sc/7X1poPPNBANT  /  coloca o link da playlist: https://prnt.
 
 -- não consegue arrastar o botão de aumentar/diminuir volume, apenas clicando na barrinha de volume.
 
+-- audio do alarme colocado, mas não toca ao final do timer(?)
+
 
 TO-DO:
--- mudar a forma como os botões de configuração e to-do list ficam em da caixa de conteúdo ao serem clicados.
 -- o titulo do site mudar conforme você starta o timer / pausa ele.
 -- botao de config superior esquerda: ativar notificações(tem), volume do alarme(tem), info sobre a técnica pomodoro(falta adicionar)
--- colocar som de alarme / verificar se o volume está funcionando normalmente
 -- remover fundo branco do botão de lixeira, deixar apenas o icon com um sombreamento branco(?)
--- trocar a paleta de cores na parte de configurações.
+-- colocar a parte de configurações para inglês. ( ja foi adicionado em translations, mas precisa alterar em outro lugar para validar essa mudança )
 
