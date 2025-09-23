@@ -564,7 +564,7 @@ h1 {
   height: 22px;
   width: 22px;
   background-color: #0d1a2f;
-  border: 3px solid #1e88e5; /* cor da borda quando não marcada */
+  border: 3px solid #0EA8D6; /* cor da borda quando não marcada */
   border-radius: 4px;
   transition: all 0.18s ease;
   display: flex;
@@ -579,8 +579,8 @@ h1 {
 
 /* quando marcado: fica td azul */
 .todo-checkbox input:checked ~ .checkbox-custom {
-  background-color: #1e88e5;
-  border-color: #1e88e5;
+  background-color: #0EA8D6;
+  border-color: #0EA8D6;
 }
 
 /* e o icon de 'concluído' aparece */
@@ -596,21 +596,17 @@ h1 {
 
 /* botao de remover tarefa (icon) */
 .delete-btn {
-  color: #ff6b6b;
+  color: #fff;
+  background: none;
+  border: none;
   font-size: 18px;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
+  cursor: pointer;
   padding: 0;
-  line-height: 1;
-  transition: background 0.12s ease;
+  transition: color 0.2s ease;
 }
 
 .delete-btn:hover {
-  background: rgba(255, 107, 107, 0.08);
+  color: rgb(223, 89, 89);
 }
 
 /* mensagem exibida quando n tem tarefas */

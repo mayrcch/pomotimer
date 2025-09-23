@@ -28,7 +28,7 @@ export class ConfigManager {
         this.autostartToggle = document.getElementById('autostartToggle');
 
         // som do alarme
-        this.alarmSound = new Audio('./sounds/alarm.wav'); 
+        this.alarmSound = new Audio('/sound/alarm.wav'); 
         this.alarmSound.volume = 0.5; // volume inicial
         this.alarmVolume.value = 0.5;
         this.updateVolumeLabel();
@@ -37,7 +37,7 @@ export class ConfigManager {
     }
 
     bindEvents() {
-        // open/close main menu
+        // abrir/fechar o main menu
         this.settingsToggle.addEventListener('click', () => this.openMain());
         this.closeSettingsBtn.addEventListener('click', () => this.closeAll());
         this.settingsOverlay.addEventListener('click', () => this.closeAll());
@@ -48,10 +48,10 @@ export class ConfigManager {
             item.addEventListener('click', () => this.openSubmenu(target));
         });
 
-        // back button
+        // botao de voltar
         this.backBtn.addEventListener('click', () => this.backToMain());
 
-        // volume control
+        // controle do volume
         this.alarmVolume.addEventListener('input', () => {
             this.alarmSound.volume = parseFloat(this.alarmVolume.value);
             this.updateVolumeLabel();
@@ -62,7 +62,7 @@ export class ConfigManager {
             this.toggleMute();
         });
 
-        // notifications toggle
+        // permissao da notificação do alarme
         this.enableNotificationsToggle.addEventListener('change', () => {
             if (this.enableNotificationsToggle.checked && 'Notification' in window) {
                 Notification.requestPermission().then(() => {
@@ -117,7 +117,7 @@ export class ConfigManager {
         this.submenus.forEach(s => s.classList.remove('open'));
     }
 
-    // mute adaptado para único som =====
+    // mute adaptado para único som
     toggleMute() {
         const vol = parseFloat(this.alarmVolume.value);
         if (vol > 0) {
@@ -138,7 +138,7 @@ export class ConfigManager {
         this.volumeValue.textContent = v + '%';
     }
 
-    // método único para tocar o alarme =====
+    // método para tocar o alarme
     playSelectedSound() {
         try {
             this.alarmSound.currentTime = 0;

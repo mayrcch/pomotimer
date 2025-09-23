@@ -1,18 +1,14 @@
 BUGS:
--- timer buga qnd o tempo acaba e vc clica no mesmo botao daquele timer.
-preenchendo normalmente: https://prnt.sc/1JTD6-tdnrBj  /  depois que o tempo acaba fica 00:00, porém se clicar no botão concluído: https://prnt.sc/IUOddNZZXviU ( e ele aumenta o número bugado quantas vezes você clicar em "concluído", essa tela não some a menos que coloque outro modo como "pausa longa" ou "foco".
+-- timer buga qnd o tempo acaba e vc clica no botao 'conluido' daquele timer finalizado.
+preenchendo normalmente: https://prnt.sc/1JTD6-tdnrBj  /  depois que o tempo acaba fica 00:00, porém se clicar no botão concluído: https://prnt.sc/IUOddNZZXviU ( e ele aumenta o número bugado quantas vezes você clicar em "concluído", essa tela não some a menos que troque para o modo como "pausa longa" ou "foco".
 
 -- adicionar abaixo do timer, uma box para adicionar playlists do spotify como musicas de lo-fi / ruídos, que tenha as funções de escolher qual música da lista de musicas e botão de volume, pausar, startar e skipar.
 ideia: https://prnt.sc/7X1poPPNBANT  /  coloca o link da playlist: https://prnt.sc/kur4n2zsXJvH  /  e ela atualiza: https://prnt.sc/b_KrjBilK5r_
 
--- não consegue arrastar o botão de aumentar/diminuir volume, apenas clicando na barrinha de volume.
-
 -- audio do alarme colocado, mas não toca ao final do timer(?)
+audio foi testado no console do navegador e funcionou, mas não toca ao final do timer.
 
 
 TO-DO:
--- o titulo do site mudar conforme você starta o timer / pausa ele.
--- botao de config superior esquerda: ativar notificações(tem), volume do alarme(tem), info sobre a técnica pomodoro(falta adicionar)
--- remover fundo branco do botão de lixeira, deixar apenas o icon com um sombreamento branco(?)
--- colocar a parte de configurações para inglês. ( ja foi adicionado em translations, mas precisa alterar em outro lugar para validar essa mudança )
+-- colocar a parte do conteúdo de 'configurações' para inglês. ( ja foi adicionado em translations, mas precisa alterar em outro lugar para validar essa mudança )
 

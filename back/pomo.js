@@ -183,6 +183,24 @@ export default class PomodoroTimer {
 
   updateDisplay() {
     updateTimerDisplay(this.timerDisplay, this.timeLeft);
+    this.updatePageTitle(); // att o titulo da pagina
+  }
+
+  updatePageTitle() { // att o titulo da pagina ao iniciar qlqr timer
+    const formattedTime = this.formatTime(this.timeLeft);
+    if (this.isRunning) {
+      document.title = `⏳ ${formattedTime} - Pomodoro`;
+    } else if (this.timeLeft < this.totalTime && this.timeLeft > 0) {
+      document.title = `⏸ ${formattedTime} - Pausado`;
+    } else {
+      document.title = "✦ Pomodoro Timer ‒ Focus!"; // título padrão
+    }
+  }
+
+  formatTime(seconds) {
+    const m = Math.floor(seconds / 60).toString().padStart(2, "0");
+    const s = (seconds % 60).toString().padStart(2, "0");
+    return `${m}:${s}`;
   }
 
   updateProgress() {
@@ -195,6 +213,7 @@ export default class PomodoroTimer {
   }
 }
 
+// notificacao
 let pomodoroTimer;
 document.addEventListener("DOMContentLoaded", () => {
   pomodoroTimer = new PomodoroTimer();
