@@ -32,6 +32,16 @@ export class ConfigManager {
         this.alarmSound.volume = 0.5;
         if (this.alarmVolume) this.alarmVolume.value = 0.5;
         this.updateVolumeLabel();
+        
+        document.body.addEventListener("click", () => {
+            try {
+                this.alarmSound.play().then(() => {
+                    this.alarmSound.pause();
+                    this.alarmSound.currentTime = 0;
+                }).catch(() => {});
+            } catch {}
+        }, { once: true });
+
 
         this.currentSubmenu = null; // <-- guarda qual submenu está aberto
 
@@ -164,15 +174,23 @@ export class ConfigManager {
         this.volumeValue.textContent = v + '%';
     }
 
-    // método chamado por pomo.js (nome compatível)
+    // método chamado por pomo.js 
     playAlarm() {
+        if (!this.alarmSound) return;
         try {
             this.alarmSound.currentTime = 0;
-            this.alarmSound.play();
-        } catch (e) {
-            console.warn('Erro ao tocar som', e);
-        }
+            const playPromise = this.alarmSound.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(err => {
+                    console.warn("Erro ao tocar alarme:", err);
+                });
+            }
+    } catch (e) {
+        console.warn("Exceção ao tocar som", e);
     }
+}
+    
+
 
     areNotificationsEnabled() {
         return !!(this.enableNotificationsToggle && this.enableNotificationsToggle.checked && Notification.permission === 'granted');
