@@ -9,6 +9,4 @@ ideia: https://prnt.sc/7X1poPPNBANT  /  coloca o link da playlist: https://prnt.
 audio foi testado no console do navegador e funcionou, mas não toca ao final do timer.
 
 
-TO-DO:
--- colocar a parte do conteúdo de 'configurações' para inglês. ( ja foi adicionado em translations, mas precisa alterar em outro lugar para validar essa mudança )
 

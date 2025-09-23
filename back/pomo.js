@@ -81,8 +81,11 @@ export default class PomodoroTimer {
     });
   }
 
+  // 🔥 Função atualizada
   updateLanguage() {
     const t = translations[this.currentLang];
+
+    // Timer / To-do
     this.title.textContent = t.title;
     this.todoManager.todoTitle.textContent = t.todoTitle;
     this.todoManager.todoInput.placeholder = t.todoPlaceholder;
@@ -94,15 +97,9 @@ export default class PomodoroTimer {
     document.getElementById("longBreakBtn").textContent = t.longBreak;
 
     switch (this.currentSessionType) {
-      case "focus":
-        this.sessionInfo.textContent = t.focusSession;
-        break;
-      case "break":
-        this.sessionInfo.textContent = t.breakSession;
-        break;
-      case "longBreak":
-        this.sessionInfo.textContent = t.longBreakSession;
-        break;
+      case "focus": this.sessionInfo.textContent = t.focusSession; break;
+      case "break": this.sessionInfo.textContent = t.breakSession; break;
+      case "longBreak": this.sessionInfo.textContent = t.longBreakSession; break;
     }
 
     if (this.isRunning) {
@@ -117,6 +114,48 @@ export default class PomodoroTimer {
 
     this.stopBtn.textContent = t.pause;
     this.resetBtn.textContent = t.reset;
+
+    // Configurações
+    const setEl = id => document.getElementById(id);
+    if (setEl("settingsTitle")) setEl("settingsTitle").textContent = t.settingsTitle;
+    if (setEl("settingsAlarmLabel")) setEl("settingsAlarmLabel").childNodes[1].textContent = " " + t.settingsAlarm;
+    if (setEl("settingsNotificationsLabel")) setEl("settingsNotificationsLabel").childNodes[1].textContent = " " + t.settingsNotifications;
+    if (setEl("settingsHint")) setEl("settingsHint").textContent = t.settingsHint || "";
+    if (setEl("settingsAboutLabel")) setEl("settingsAboutLabel").childNodes[1].textContent = " " + t.settingsAbout;
+
+    const alarmLabel = document.querySelector("#alarmSettings label");
+    if (alarmLabel) alarmLabel.childNodes[0].textContent = t.alarmVolume + " ";
+
+    const muteBtn = document.getElementById("soundMuteBtn");
+    if (muteBtn) muteBtn.title = t.mute;
+
+    const notifLabel = document.querySelector("#notificationsSettings .toggle-row span");
+    if (notifLabel) notifLabel.textContent = t.notifyWhenDone;
+
+    const aboutTitle = document.querySelector("#aboutPomodoro .submenu-title");
+    if (aboutTitle) aboutTitle.textContent = t.aboutTitle;
+
+    const aboutText = document.querySelector("#aboutPomodoro .submenu-section p");
+    if (aboutText && t.aboutText) aboutText.innerHTML = t.aboutText;
+
+    // 🔑 Ajuste crucial: mantém título correto do submenu aberto
+    if (this.configManager && this.configManager.currentSubmenu) {
+      switch (this.configManager.currentSubmenu) {
+        case 'alarmSettings':
+          if (setEl('settingsTitle')) setEl('settingsTitle').textContent = t.settingsAlarm;
+          break;
+        case 'notificationsSettings':
+          if (setEl('settingsTitle')) setEl('settingsTitle').textContent = t.settingsNotifications;
+          break;
+        case 'aboutPomodoro':
+          if (setEl('settingsTitle')) setEl('settingsTitle').textContent = t.settingsAbout;
+          break;
+        default:
+          if (setEl('settingsTitle')) setEl('settingsTitle').textContent = t.settingsTitle;
+      }
+    } else {
+      if (setEl('settingsTitle')) setEl('settingsTitle').textContent = t.settingsTitle;
+    }
   }
 
   start() {
@@ -173,7 +212,6 @@ export default class PomodoroTimer {
     // toca o alarme
     try {
       if (this.configManager) {
-        // toca o alarme selecionado
         this.configManager.playAlarm();
       }
     } catch (e) {

@@ -1,6 +1,9 @@
+// config.js
+import { translations } from "./translations.js"; // <-- NOVO: traz as traduções
+
 export class ConfigManager {
     constructor() {
-        // elements
+        // elementos
         this.settingsToggle = document.getElementById('settingsToggle');
         this.settingsWrapper = document.getElementById('settingsWrapper');
         this.settingsOverlay = document.getElementById('settingsOverlay');
@@ -10,7 +13,7 @@ export class ConfigManager {
         this.closeSettingsBtn = document.getElementById('closeSettingsBtn');
         this.backBtn = document.getElementById('backBtn');
 
-        // submenus
+        // submenus / itens
         this.submenus = Array.from(document.querySelectorAll('.settings-submenu'));
         this.menuItems = Array.from(document.querySelectorAll('.settings-item'));
 
@@ -20,56 +23,59 @@ export class ConfigManager {
         this.alarmVolume = document.getElementById('alarmVolume');
         this.volumeValue = document.getElementById('volumeValue');
 
-        // notifications controls
+        // notifications
         this.notificationsSettings = document.getElementById('notificationsSettings');
         this.enableNotificationsToggle = document.getElementById('enableNotificationsToggle');
 
-        // autostart and others
-        this.autostartToggle = document.getElementById('autostartToggle');
-
-        // som do alarme
-        this.alarmSound = new Audio('/sound/alarm.wav'); 
-        this.alarmSound.volume = 0.5; // volume inicial
-        this.alarmVolume.value = 0.5;
+        // audio do alarme
+        this.alarmSound = new Audio('/sound/alarm.wav');
+        this.alarmSound.volume = 0.5;
+        if (this.alarmVolume) this.alarmVolume.value = 0.5;
         this.updateVolumeLabel();
 
+        this.currentSubmenu = null; // <-- guarda qual submenu está aberto
+
         this.bindEvents();
+
+        // inicializa título com o idioma atual (fallback 'pt')
+        const lang = window.pomodoroTimer?.currentLang || 'pt';
+        const t = translations[lang] || translations['pt'];
+        if (this.settingsTitle) this.settingsTitle.textContent = t.settingsTitle;
     }
 
     bindEvents() {
-        // abrir/fechar o main menu
         this.settingsToggle.addEventListener('click', () => this.openMain());
         this.closeSettingsBtn.addEventListener('click', () => this.closeAll());
         this.settingsOverlay.addEventListener('click', () => this.closeAll());
 
-        // menu item navigation
+        // navegação para submenus
         this.menuItems.forEach(item => {
             const target = item.dataset.target;
             item.addEventListener('click', () => this.openSubmenu(target));
         });
 
-        // botao de voltar
         this.backBtn.addEventListener('click', () => this.backToMain());
 
-        // controle do volume
-        this.alarmVolume.addEventListener('input', () => {
-            this.alarmSound.volume = parseFloat(this.alarmVolume.value);
-            this.updateVolumeLabel();
-        });
+        if (this.alarmVolume) {
+            this.alarmVolume.addEventListener('input', () => {
+                this.alarmSound.volume = parseFloat(this.alarmVolume.value);
+                this.updateVolumeLabel();
+            });
+        }
 
-        // botão mute
-        this.soundMuteBtn.addEventListener('click', () => {
-            this.toggleMute();
-        });
+        if (this.soundMuteBtn) {
+            this.soundMuteBtn.addEventListener('click', () => {
+                this.toggleMute();
+            });
+        }
 
-        // permissao da notificação do alarme
-        this.enableNotificationsToggle.addEventListener('change', () => {
-            if (this.enableNotificationsToggle.checked && 'Notification' in window) {
-                Notification.requestPermission().then(() => {
-                    // permission result handled by application if needed
-                });
-            }
-        });
+        if (this.enableNotificationsToggle) {
+            this.enableNotificationsToggle.addEventListener('change', () => {
+                if (this.enableNotificationsToggle.checked && 'Notification' in window) {
+                    Notification.requestPermission().then(() => {/* nada extra aqui */});
+                }
+            });
+        }
     }
 
     openMain() {
@@ -82,31 +88,52 @@ export class ConfigManager {
         this.hideAllSubmenus();
         this.currentSubmenu = null;
         this.backBtn.classList.remove('visible');
-        this.settingsTitle.textContent = 'Personalize';
+
+        // usa tradução dinâmica
+        const lang = window.pomodoroTimer?.currentLang || 'pt';
+        const t = translations[lang] || translations['pt'];
+        this.settingsTitle.textContent = t.settingsTitle;
     }
 
     showMain() {
         this.settingsMain.style.display = 'block';
         this.submenus.forEach(s => s.classList.remove('open'));
         this.backBtn.classList.remove('visible');
-        this.settingsTitle.textContent = 'Personalize';
+
+        // usa tradução dinâmica
+        const lang = window.pomodoroTimer?.currentLang || 'pt';
+        const t = translations[lang] || translations['pt'];
+        this.settingsTitle.textContent = t.settingsTitle;
+        this.currentSubmenu = null;
     }
 
     openSubmenu(id) {
         const submenu = document.getElementById(id);
         if (!submenu) return;
+
         this.hideAllSubmenus();
         this.settingsMain.style.display = 'none';
         submenu.classList.add('open');
         this.currentSubmenu = id;
         this.backBtn.classList.add('visible');
-        // titulos dos conteudos do submenu de config
-        const titleMap = {
-            alarmSettings: 'Personalize alarme',
-            notificationsSettings: 'Notificações',
-            aboutPomodoro: 'Sobre a técnica Pomodoro'
-        };
-        this.settingsTitle.textContent = titleMap[id] || 'Configurações';
+
+        // PEGA tradução atual e seta título conforme submenu (NÃO usar strings fixas)
+        const lang = window.pomodoroTimer?.currentLang || 'pt';
+        const t = translations[lang] || translations['pt'];
+
+        switch (id) {
+            case "alarmSettings":
+                this.settingsTitle.textContent = t.settingsAlarm;
+                break;
+            case "notificationsSettings":
+                this.settingsTitle.textContent = t.settingsNotifications;
+                break;
+            case "aboutPomodoro":
+                this.settingsTitle.textContent = t.settingsAbout;
+                break;
+            default:
+                this.settingsTitle.textContent = t.settingsTitle;
+        }
     }
 
     backToMain() {
@@ -117,29 +144,28 @@ export class ConfigManager {
         this.submenus.forEach(s => s.classList.remove('open'));
     }
 
-    // mute adaptado para único som
     toggleMute() {
-        const vol = parseFloat(this.alarmVolume.value);
+        const vol = parseFloat(this.alarmVolume?.value || 0);
         if (vol > 0) {
-            // store previous and mute
             this._previousVolume = vol;
-            this.alarmVolume.value = 0;
+            if (this.alarmVolume) this.alarmVolume.value = 0;
             this.alarmSound.volume = 0;
         } else {
-            // restore previous
-            this.alarmVolume.value = (this._previousVolume || 0.5);
+            const restore = (this._previousVolume || 0.5);
+            if (this.alarmVolume) this.alarmVolume.value = restore;
             this.alarmSound.volume = parseFloat(this.alarmVolume.value);
         }
         this.updateVolumeLabel();
     }
 
     updateVolumeLabel() {
-        const v = Math.round(parseFloat(this.alarmVolume.value) * 100);
+        if (!this.volumeValue) return;
+        const v = Math.round(parseFloat(this.alarmVolume?.value || 0) * 100);
         this.volumeValue.textContent = v + '%';
     }
 
-    // método para tocar o alarme
-    playSelectedSound() {
+    // método chamado por pomo.js (nome compatível)
+    playAlarm() {
         try {
             this.alarmSound.currentTime = 0;
             this.alarmSound.play();
@@ -149,6 +175,6 @@ export class ConfigManager {
     }
 
     areNotificationsEnabled() {
-        return this.enableNotificationsToggle.checked && Notification.permission === 'granted';
+        return !!(this.enableNotificationsToggle && this.enableNotificationsToggle.checked && Notification.permission === 'granted');
     }
 }

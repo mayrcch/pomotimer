@@ -21,7 +21,7 @@
             <!-- Header com título e voltar/fechar -->
             <div class="settings-header">
                 <button class="back-btn" id="backBtn" aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></button>
-                <h3 id="settingsTitle">Personalize</h3>
+                <h3 id="settingsTitle">Configurações</h3>
                 <button class="close-btn" id="closeSettingsBtn"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
@@ -29,17 +29,16 @@
             <div class="settings-content" id="settingsMain">
                 <ul class="settings-list">
                     <li class="settings-item" data-target="alarmSettings">
-                        <span><i class="fa-solid fa-bell"></i> Volume do alarme</span>
+                        <span id="settingsAlarmLabel"><i class="fa-solid fa-bell"></i> Volume do alarme</span> <!-- ID ADICIONADO -->
                         <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
-                    </li>
                     <li class="settings-item" data-target="notificationsSettings">
-                        <span><i class="fa-solid fa-envelope"></i> Notificações</span>
-                        <small class="muted">recomendado</small>
+                        <span id="settingsNotificationsLabel"><i class="fa-solid fa-envelope"></i> Notificações</span> <!-- ID ADICIONADO -->
+                        <small class="muted" id="settingsHint">recomendado</small> <!-- ID ADICIONADO -->
                         <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
                     <li class="settings-item" data-target="aboutPomodoro">
-                        <span><i class="fa-solid fa-clock"></i> Sobre a técnica Pomodoro</span>
+                        <span id="settingsAboutLabel"><i class="fa-solid fa-clock"></i> Sobre a técnica Pomodoro</span> <!-- ID ADICIONADO -->
                         <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
                 </ul>
@@ -50,6 +49,7 @@
                 <h4 class="submenu-title"></h4>
                 <div class="submenu-section">
                     <label for="alarmVolume">Volume <span id="volumeValue">50%</span></label>
+                    <!-- o texto "Volume" será substituído por updateLanguage() -->
                     <input type="range" id="alarmVolume" min="0" max="1" step="0.01" value="0.5">
                     <button class="sound-mute" id="soundMuteBtn"><i class="fa-solid fa-volume-xmark"></i></button>
                 </div>
@@ -60,11 +60,13 @@
                 <h4 class="submenu-title"></h4>
                 <div class="submenu-section">
                     <label class="toggle-row">
-                        <span>Notificar quando o tempo acabar</span>
+                        <span>Notificar quando o tempo acabar</span> <!-- será substituído via translations -->
                         <input type="checkbox" id="enableNotificationsToggle">
                     </label>
                 </div>
             </div>
+            
+            <!-- submenu sobre o pomodoro -->
             <div class="settings-submenu" id="aboutPomodoro" aria-hidden="true">
                 <h4 class="submenu-title">O que é a Técnica Pomodoro?</h4>
                 <div class="submenu-section">
@@ -100,8 +102,8 @@
                 <span class="language-arrow"><i class="fa-solid fa-caret-down"></i></span>
             </div>
             <div class="language-options" id="languageOptions">
-                <button class="language-option" data-lang="pt">pt-br</button>
-                <button class="language-option" data-lang="en">en-us</button>
+                <button class="language-option" data-lang="pt">pt</button>
+                <button class="language-option" data-lang="en">en</button>
             </div>
         </div>
     </div>
