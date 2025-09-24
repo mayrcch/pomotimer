@@ -2,8 +2,9 @@ BUGS:
 -- timer buga qnd o tempo acaba e clica no botao 'concluido' daquele timer finalizado.
 o tempo preenchendo normalmente: https://prnt.sc/1JTD6-tdnrBj  /  depois que o tempo acaba e fica 00:00, se clicar no botão concluído: https://prnt.sc/IUOddNZZXviU ( e ele aumenta o número bugado quantas vezes o botão "concluído" for clicado, essa tela não some a menos que troque para o modo como "pausa longa" ou "foco", ou atualize a página.
 
--- adicionar abaixo do timer, uma box para adicionar playlists do spotify como musicas de lo-fi / ruídos, que tenha as funções de escolher qual música da lista de musicas e botão de volume, pausar, startar e skipar.
-ideia: https://prnt.sc/7X1poPPNBANT  /  coloca o link da playlist: https://prnt.sc/kur4n2zsXJvH  /  e ela atualiza: https://prnt.sc/b_KrjBilK5r_
+
+! TODO:
+-- arrumar o responsividade ao aumentar o zoom do site
 
 
 

@@ -5,14 +5,24 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;        
+  margin: 0;           
+  overflow: hidden;    
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #0d1a2f;
-  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
   justify-content: center;
   align-items: center;
+  /* padding: 40px 20px; */
   color: #f0f0f0;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 /* container main: parte central onde ta o timer e os botões */
@@ -796,6 +806,70 @@ h1 {
   font-weight: 600;
   margin-left: 8px;
 }
+
+/* PARTE DO PLAYER */
+.spotify-box {
+  margin: 40px auto 20px auto;
+  max-width: 32vw;
+  width: 100%;
+  background: #182b4a;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.spotify-box h2 {
+  margin-bottom: 16px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.spotify-input {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.spotify-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #0d1a2f;
+  color: #fff;
+}
+
+.spotify-input input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.spotify-input button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #1db954;
+  color: white;
+  transition: 0.2s;
+}
+
+.spotify-input button:hover {
+  background: #1ed760;
+}
+
+#spotifyEmbed iframe {
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+
 
 /* pequenas mudanças para telas bem pequenas */
 @media (max-width: 480px) {

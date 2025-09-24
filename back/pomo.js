@@ -42,6 +42,7 @@ export default class PomodoroTimer {
     this.updateDisplay();
     this.updateLanguage();
     this.sessionManager.updateActiveSessionButton();
+    this.setupSpotifyEmbed();
   }
 
   bindEvents() {
@@ -249,6 +250,41 @@ export default class PomodoroTimer {
       this.circumference
     );
   }
+  // --- método para o embed via URL (colocar dentro da classe PomodoroTimer) ---
+setupSpotifyEmbed() {
+  const input = document.getElementById("spotifyUrl");
+  const btn = document.getElementById("spotifyUpdateBtn");
+  const embedBox = document.getElementById("spotifyEmbed");
+
+  btn.addEventListener("click", () => {
+    const url = (input?.value || "").trim();
+    if (!url) {
+      embedBox.innerHTML = "<p style='color:#bbb;'>Cole um link de playlist do Spotify.</p>";
+      return;
+    }
+
+    // extrai id da playlist de formas comuns
+    let playlistId = null;
+    let m = url.match(/playlist\/([a-zA-Z0-9]+)/);
+    if (m) playlistId = m[1];
+    else {
+      m = url.match(/spotify:playlist:([a-zA-Z0-9]+)/);
+      if (m) playlistId = m[1];
+    }
+
+    if (playlistId) {
+      embedBox.innerHTML = `
+        <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/playlist/${playlistId}"
+          width="100%" height="380" frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>`;
+    } else {
+      embedBox.innerHTML = "<p style='color:#bbb;'>Link inválido. Cole um link de playlist do Spotify.</p>";
+    }
+  });
+}
+
 }
 
 // notificacao

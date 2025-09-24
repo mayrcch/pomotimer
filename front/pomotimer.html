@@ -11,56 +11,55 @@
     <!-- Botão de Configurações -->
     <div class="settings-toggle" id="settingsToggle"><i class="fa-solid fa-gear"></i> </div>
 
-    <!-- Menu de Configurações (principal e submenus) -->
+    <!-- menu de config -->
     <div class="settings-wrapper" id="settingsWrapper" aria-hidden="true">
-        <!-- Overlay -->
+        <
         <div class="settings-overlay" id="settingsOverlay"></div>
 
-        <!-- Caixa do menu -->
+        <!-- caixa do menu -->
         <div class="settings-menu" id="settingsMenu" role="dialog" aria-modal="true">
-            <!-- Header com título e voltar/fechar -->
+            <!-- header com o título config + voltar/fechar -->
             <div class="settings-header">
                 <button class="back-btn" id="backBtn" aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></button>
                 <h3 id="settingsTitle">Configurações</h3>
                 <button class="close-btn" id="closeSettingsBtn"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <!-- Conteúdo: principal -->
+            <!-- parte principal -->
             <div class="settings-content" id="settingsMain">
                 <ul class="settings-list">
                     <li class="settings-item" data-target="alarmSettings">
-                        <span id="settingsAlarmLabel"><i class="fa-solid fa-bell"></i> Volume do alarme</span> <!-- ID ADICIONADO -->
+                        <span id="settingsAlarmLabel"><i class="fa-solid fa-bell"></i> Volume do alarme</span> 
                         <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
                     <li class="settings-item" data-target="notificationsSettings">
-                        <span id="settingsNotificationsLabel"><i class="fa-solid fa-envelope"></i> Notificações</span> <!-- ID ADICIONADO -->
-                        <small class="muted" id="settingsHint">recomendado</small> <!-- ID ADICIONADO -->
+                        <span id="settingsNotificationsLabel"><i class="fa-solid fa-envelope"></i> Notificações</span> 
+                        <small class="muted" id="settingsHint">recomendado</small> 
                         <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
                     <li class="settings-item" data-target="aboutPomodoro">
-                        <span id="settingsAboutLabel"><i class="fa-solid fa-clock"></i> Sobre a técnica Pomodoro</span> <!-- ID ADICIONADO -->
+                        <span id="settingsAboutLabel"><i class="fa-solid fa-clock"></i> Sobre a técnica Pomodoro</span> 
                         <span class="chev"><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
                 </ul>
             </div>
 
-            <!-- Submenu Alarme -->
+            <!-- submenu do alarme -->
             <div class="settings-submenu" id="alarmSettings" aria-hidden="true">
                 <h4 class="submenu-title"></h4>
                 <div class="submenu-section">
                     <label for="alarmVolume">Volume <span id="volumeValue">50%</span></label>
-                    <!-- o texto "Volume" será substituído por updateLanguage() -->
                     <input type="range" id="alarmVolume" min="0" max="1" step="0.01" value="0.5">
                     <button class="sound-mute" id="soundMuteBtn"><i class="fa-solid fa-volume-xmark"></i></button>
                 </div>
             </div>
 
-            <!-- Submenu Notificações -->
+            <!-- submenu das notif -->
             <div class="settings-submenu" id="notificationsSettings" aria-hidden="true">
                 <h4 class="submenu-title"></h4>
                 <div class="submenu-section">
                     <label class="toggle-row">
-                        <span>Notificar quando o tempo acabar</span> <!-- será substituído via translations -->
+                        <span>Notificar quando o tempo acabar</span> 
                         <input type="checkbox" id="enableNotificationsToggle">
                     </label>
                 </div>
@@ -120,7 +119,6 @@
                 <button class="add-todo-btn" id="addTodoBtn">Adicionar Tarefa</button>
             </div>
             <ul class="todo-list" id="todoList">
-                <!-- Lista de tarefas será inserida aqui -->
             </ul>
             <div class="empty-state" id="emptyState">
                 Nenhuma tarefa ainda. Adicione uma acima!
@@ -131,11 +129,11 @@
     <!-- principal -->
     <div class="container">
         <h1 id="title">Timer Pomodoro</h1>
-    <div class="session-buttons">
-        <button class="session-btn active" id="focusBtn">Foco</button>
-        <button class="session-btn" id="breakBtn">Pausa curta</button>
-        <button class="session-btn" id="longBreakBtn">Pausa longa</button>
-    </div>
+        <div class="session-buttons">
+            <button class="session-btn active" id="focusBtn">Foco</button>
+            <button class="session-btn" id="breakBtn">Pausa curta</button>
+            <button class="session-btn" id="longBreakBtn">Pausa longa</button>
+        </div>
         <!-- display do timer -->
         <div class="timer-container">
             <svg class="progress-ring" width="300" height="300">
@@ -156,7 +154,21 @@
             <button class="btn btn-stop" id="stopBtn">Parar</button>
             <button class="btn btn-reset" id="resetBtn">Reiniciar</button>
         </div>
+    </div>
+
+    <!-- Spotify Box (vazia até o usuário colar a playlist e clicar em Update) -->
+    <div class="spotify-box">
+        <h2><i class="fa-brands fa-spotify"></i></h2>
+        <div class="spotify-input">
+            <input id="spotifyUrl" type="text" placeholder="Insira o link da sua playlist do Spotify...">
+            <button id="spotifyUpdateBtn">Atualizar</button>
+        </div>
+
+        <div id="spotifyEmbed"></div>
+    </div>
+
 
     <script type="module" src="/back/pomo.js"></script>
+
 </body>
 </html>
