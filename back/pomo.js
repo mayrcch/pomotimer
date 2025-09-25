@@ -48,8 +48,7 @@ export default class PomodoroTimer {
   bindEvents() {
   this.startBtn.addEventListener("click", () => {
     if (this.startBtn.textContent === translations[this.currentLang].completed) {
-      // se o botão está como "Concluído!"
-      this.reset(); // 🔥 reseta o timer
+      this.reset(); // reseta o timer qnd clicar em "concluído"
       return;
     }
     this.start();
@@ -167,7 +166,7 @@ export default class PomodoroTimer {
       if (setEl('settingsTitle')) setEl('settingsTitle').textContent = t.settingsTitle;
     }
 
-    // Spotify
+    // spot
     const spotifyTitle = document.getElementById("spotifyTitle");
     if (spotifyTitle) spotifyTitle.innerHTML = `<i class="fa-brands fa-spotify"></i> ${t.spotifyTitle}`;
 
@@ -229,7 +228,7 @@ export default class PomodoroTimer {
       this.progressCircle.style.stroke = "#ff6b6b";
     }, 2000);
 
-    // notification via notifications module
+    // notificaçoes via modulo de notif
     sendNotification(t.notificationTitle, t.notificationBody);
 
     // toca o alarme

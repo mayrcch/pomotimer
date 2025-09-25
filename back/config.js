@@ -1,5 +1,5 @@
 // config.js
-import { translations } from "./translations.js"; // <-- NOVO: traz as traduções
+import { translations } from "./translations.js"; 
 
 export class ConfigManager {
     constructor() {
@@ -17,13 +17,13 @@ export class ConfigManager {
         this.submenus = Array.from(document.querySelectorAll('.settings-submenu'));
         this.menuItems = Array.from(document.querySelectorAll('.settings-item'));
 
-        // alarm controls
+        // controle do alarme
         this.alarmSettings = document.getElementById('alarmSettings');
         this.soundMuteBtn = document.getElementById('soundMuteBtn');
         this.alarmVolume = document.getElementById('alarmVolume');
         this.volumeValue = document.getElementById('volumeValue');
 
-        // notifications
+        // notifs
         this.notificationsSettings = document.getElementById('notificationsSettings');
         this.enableNotificationsToggle = document.getElementById('enableNotificationsToggle');
 
@@ -43,11 +43,11 @@ export class ConfigManager {
         }, { once: true });
 
 
-        this.currentSubmenu = null; // <-- guarda qual submenu está aberto
+        this.currentSubmenu = null; // guarda qual submenu ta aberto
 
         this.bindEvents();
 
-        // inicializa título com o idioma atual (fallback 'pt')
+        // inicializa o titulo com o idioma atual
         const lang = window.pomodoroTimer?.currentLang || 'pt';
         const t = translations[lang] || translations['pt'];
         if (this.settingsTitle) this.settingsTitle.textContent = t.settingsTitle;
@@ -58,7 +58,7 @@ export class ConfigManager {
         this.closeSettingsBtn.addEventListener('click', () => this.closeAll());
         this.settingsOverlay.addEventListener('click', () => this.closeAll());
 
-        // navegação para submenus
+        // navegação p submenus
         this.menuItems.forEach(item => {
             const target = item.dataset.target;
             item.addEventListener('click', () => this.openSubmenu(target));
@@ -127,7 +127,6 @@ export class ConfigManager {
         this.currentSubmenu = id;
         this.backBtn.classList.add('visible');
 
-        // PEGA tradução atual e seta título conforme submenu (NÃO usar strings fixas)
         const lang = window.pomodoroTimer?.currentLang || 'pt';
         const t = translations[lang] || translations['pt'];
 
@@ -174,7 +173,7 @@ export class ConfigManager {
         this.volumeValue.textContent = v + '%';
     }
 
-    // método chamado por pomo.js 
+    // metodo chamado pelo 'pomo.js'
     playAlarm() {
         if (!this.alarmSound) return;
         try {
