@@ -1,4 +1,0 @@
--- reajustar responsividade do music player ao aumentar/diminuir zoom do site.
-
-
-
