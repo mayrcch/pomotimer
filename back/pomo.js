@@ -46,10 +46,19 @@ export default class PomodoroTimer {
   }
 
   bindEvents() {
-    this.startBtn.addEventListener("click", () => this.start());
-    this.stopBtn.addEventListener("click", () => this.stop());
-    this.resetBtn.addEventListener("click", () => this.reset());
-  }
+  this.startBtn.addEventListener("click", () => {
+    if (this.startBtn.textContent === translations[this.currentLang].completed) {
+      // se o botão está como "Concluído!"
+      this.reset(); // 🔥 reseta o timer
+      return;
+    }
+    this.start();
+  });
+
+  this.stopBtn.addEventListener("click", () => this.stop());
+  this.resetBtn.addEventListener("click", () => this.reset());
+}
+
 
   setupLanguageSelector() {
     this.languageCurrent.addEventListener("click", (e) => {
@@ -82,11 +91,11 @@ export default class PomodoroTimer {
     });
   }
 
-  // 🔥 Função atualizada
+  // sobre a mudança de idioma
   updateLanguage() {
     const t = translations[this.currentLang];
 
-    // Timer / To-do
+    // timer / to-do
     this.title.textContent = t.title;
     this.todoManager.todoTitle.textContent = t.todoTitle;
     this.todoManager.todoInput.placeholder = t.todoPlaceholder;
@@ -116,7 +125,7 @@ export default class PomodoroTimer {
     this.stopBtn.textContent = t.pause;
     this.resetBtn.textContent = t.reset;
 
-    // Configurações
+    // configs
     const setEl = id => document.getElementById(id);
     if (setEl("settingsTitle")) setEl("settingsTitle").textContent = t.settingsTitle;
     if (setEl("settingsAlarmLabel")) setEl("settingsAlarmLabel").childNodes[1].textContent = " " + t.settingsAlarm;
@@ -139,7 +148,7 @@ export default class PomodoroTimer {
     const aboutText = document.querySelector("#aboutPomodoro .submenu-section p");
     if (aboutText && t.aboutText) aboutText.innerHTML = t.aboutText;
 
-    // 🔑 Ajuste crucial: mantém título correto do submenu aberto
+    // titulo traduzido certinho ao abrir o submenu
     if (this.configManager && this.configManager.currentSubmenu) {
       switch (this.configManager.currentSubmenu) {
         case 'alarmSettings':
@@ -157,6 +166,19 @@ export default class PomodoroTimer {
     } else {
       if (setEl('settingsTitle')) setEl('settingsTitle').textContent = t.settingsTitle;
     }
+
+    // Spotify
+    const spotifyTitle = document.getElementById("spotifyTitle");
+    if (spotifyTitle) spotifyTitle.innerHTML = `<i class="fa-brands fa-spotify"></i> ${t.spotifyTitle}`;
+
+    const spotifyUrl = document.getElementById("spotifyUrl");
+    if (spotifyUrl) spotifyUrl.placeholder = t.spotifyPlaceholder;
+
+    const spotifyUpdateBtn = document.getElementById("spotifyUpdateBtn");
+    if (spotifyUpdateBtn) spotifyUpdateBtn.textContent = t.spotifyUpdate;
+
+    // as mensgs de erro/empty sao tratados no 'setupSpotifyEmbed()'
+
   }
 
   start() {
@@ -232,7 +254,7 @@ export default class PomodoroTimer {
     } else if (this.timeLeft < this.totalTime && this.timeLeft > 0) {
       document.title = `⏸ ${formattedTime} - Pausado`;
     } else {
-      document.title = "✦ Pomodoro Timer ‒ Focus!"; // título padrão
+      document.title = "✦ Pomodoro Timer ‒ Focus!"; // título padrão acima do site
     }
   }
 
@@ -250,7 +272,7 @@ export default class PomodoroTimer {
       this.circumference
     );
   }
-  // --- método para o embed via URL (colocar dentro da classe PomodoroTimer) ---
+  //
 setupSpotifyEmbed() {
   const input = document.getElementById("spotifyUrl");
   const btn = document.getElementById("spotifyUpdateBtn");
@@ -259,11 +281,11 @@ setupSpotifyEmbed() {
   btn.addEventListener("click", () => {
     const url = (input?.value || "").trim();
     if (!url) {
-      embedBox.innerHTML = "<p style='color:#bbb;'>Cole um link de playlist do Spotify.</p>";
+      embedBox.innerHTML = `<p style='color:#bbb;'>${translations[this.currentLang].spotifyEmpty}</p>`;
       return;
     }
 
-    // extrai id da playlist de formas comuns
+    // extrai o id da playlist 
     let playlistId = null;
     let m = url.match(/playlist\/([a-zA-Z0-9]+)/);
     if (m) playlistId = m[1];
@@ -280,7 +302,7 @@ setupSpotifyEmbed() {
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"></iframe>`;
     } else {
-      embedBox.innerHTML = "<p style='color:#bbb;'>Link inválido. Cole um link de playlist do Spotify.</p>";
+      embedBox.innerHTML = `<p style='color:#bbb;'>${translations[this.currentLang].spotifyInvalid}</p>`;
     }
   });
 }

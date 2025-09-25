@@ -35,7 +35,15 @@ export const translations = {
     mute: "Silenciar",
     notifyWhenDone: "Notificar quando o tempo acabar",
     aboutTitle: "O que é a Técnica Pomodoro?",
+
+    // music player do spot
+    spotifyPlaceholder: "Insira o link da sua playlist do Spotify...",
+    spotifyUpdate: "Atualizar",
+    spotifyInvalid: "Link inválido. Cole um link de playlist do Spotify.",
+    spotifyEmpty: "Cole um link de playlist do Spotify.",
   },
+
+
   en: {
     title: "Pomodoro Timer",
     start: "Start",
@@ -86,5 +94,16 @@ This helps maintain productivity and reduce mental fatigue.<br><br>
 - Take a 5-minute break to refresh your concentration.<br>
 - After 4 pomodoros, take a long break of 15-30 minutes.<br>
 `,
+
+    // music player do spot em en
+    spotifyPlaceholder: "Paste your Spotify playlist link...",
+    spotifyUpdate: "Update",
+    spotifyInvalid: "Invalid link. Paste a Spotify playlist link.",
+    spotifyEmpty: "Paste a Spotify playlist link.",
   },
+
+
+
+
+
 };
