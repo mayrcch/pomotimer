@@ -6,9 +6,10 @@
 }
 
 html, body {
-  height: 100%;        
+  height: fit-content;        
   margin: 0;           
-  overflow: auto;    
+  overflow: auto; 
+  scrollbar-width: none;   
 }
 
 body {
@@ -24,6 +25,7 @@ body {
   padding-top: 30px;
   padding-bottom: 20px;
 }
+
 
 /* container main: parte central onde ta o timer e os botões */
 .container {
@@ -810,7 +812,7 @@ h1 {
 /* PARTE DO PLAYER */
 .spotify-box {
   margin: 40px auto 20px auto;
-  max-width: 32vw;
+  max-width: 620px;
   width: 100%;
   background: #182b4a;
   border-radius: 20px;
