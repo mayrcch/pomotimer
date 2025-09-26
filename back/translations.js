@@ -14,7 +14,7 @@ export const translations = {
     langName: "Português",
 
     // to-do
-    todoTitle: "To-Do List",
+    todoTitle: "Lista de Tarefas",
     todoPlaceholder: "Digite sua tarefa...",
     addTodo: "Adicionar Tarefa",
     emptyState: "Nenhuma tarefa ainda. Adicione uma acima!",

@@ -33,7 +33,7 @@ export default class PomodoroTimer {
     this.sessionManager = new SessionManager(this);
     this.configManager = new ConfigManager();
 
-    // make managers accessible for inline handlers (todos used inline)
+    // 
     window.pomodoroTimer = this;
     this.todoManagerInstance = this.todoManager;
 
@@ -48,7 +48,7 @@ export default class PomodoroTimer {
   bindEvents() {
   this.startBtn.addEventListener("click", () => {
     if (this.startBtn.textContent === translations[this.currentLang].completed) {
-      this.reset(); // reseta o timer qnd clicar em "concluído"
+      this.reset(); // reseta o timer qnd clicar em "concluido"
       return;
     }
     this.start();
